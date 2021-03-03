@@ -21,7 +21,7 @@ const sheep = new Animal('sheep')
 // remember, readonly is valid ONLY in the compile context, no JS
 
 /**
- * Union Types
+ * Union Types: |
  */
 function formatCommandLine(input: string | string[]) {
     return 'ok'
@@ -54,7 +54,7 @@ function move(distanceMeters: number, direction: CardinalDirection) {
 type DiceValue = 1 | 2 | 3 | 4 | 5 | 6
 
 const rollDice = function (): DiceValue {
-    return (Math.floor(Math.random() * 6) + 1) as DiceValue // forcing result to DiceValueype
+    return (Math.floor(Math.random() * 6) + 1) as DiceValue // forcing result to DiceValue type
 }
 
 /**
@@ -132,7 +132,7 @@ const nicola = new Person('nicola', 'c')
 let notDef: undefined = undefined
 let notPres: null = null
 
-null == undefined // true, with double equal
+null == undefined // true, with DOUBLE equal
 
 let something
 if (something == null) {
@@ -147,7 +147,7 @@ function decorate(value: string | null | undefined) {
 }
 
 /**
- * Intersection Types
+ * Intersection Types: &
  */
 type P2 = {
     x: number
@@ -160,7 +160,7 @@ type P3 = P2 & {
 }
 
 /**
- * Optional modifiers
+ * Optional modifiers: ?
  */
 type House = {
     door: number,
@@ -169,7 +169,8 @@ type House = {
 }
 
 /**
- * Non-null assertion, COMPILE TIME ONLY
+ * Non-null assertion: !
+ * COMPILE TIME ONLY
  */
 type PP = {
     x: number,
@@ -184,4 +185,4 @@ function initialize() {
 initialize()
 console.log('after initialization: ', uh!.x, uh!.y)
 // telling TS to trust us on non-null values
-// not so good practice
+// this is not a very good practice
