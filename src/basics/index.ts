@@ -113,7 +113,7 @@ p2 = p3
  */
 class Animal {
 
-    // private is a TS keyboard
+    // private is a TS keyword
     private name: string;
 
     constructor(name: string) {
@@ -209,7 +209,7 @@ let that
 
 that = '1234'
 
-const num = +that // type cohersion, NO TYPE CASTING
+const num = +that // type coercion, NO TYPE CASTING
 
 /**
  * Modules
@@ -219,7 +219,7 @@ function isPalindrome(str: string): boolean {
 }
 
 // to import the function in another module, LIKE IN JS
-// import { isPaindrome } from './utls'
+// import { isPaindrome } from './utils'
 
 /**
  * Type Declarations
