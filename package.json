@@ -1,7 +1,7 @@
 {
   "name": "typescript-course",
   "version": "1.0.0",
-  "description": "",
+  "description": "`npm init -y`",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "typescript": "^4.1.5"
-  }
+    "typescript": "^4.4.4"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncastaldo/typescript-course.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ncastaldo/typescript-course/issues"
+  },
+  "homepage": "https://github.com/ncastaldo/typescript-course#readme"
 }
