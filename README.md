@@ -16,6 +16,8 @@
 
 `npx tsc` --> to compile the TS in JS
 
+`tsc` --> if typescript installed globally
+
 `npx tsc --watch` --> to recompile on-the-fly
 
 `node lib/index.ts` --> to execute
@@ -24,9 +26,9 @@
 
 `target: es6` --> in tsconfig.json to compile in es6
 
-`noImplicitAny: true` --> in tsconfig.json to avoid 'any'
+`strict: true` --> in tsconfig.json for strict behavior, i.e. only ts allowed
 
-`strict: true` --> in tsconfig.json for strict behavior
+`noImplicitAny: true` --> in tsconfig.json to avoid 'any', i.e. 'any' is not allowed at all
 
 # Declarations
 
@@ -55,7 +57,7 @@ TS cannot be run with node without a compiler, but `ts-node` can be used to skip
 
 `npx ts-node src/index.ts`
 
-`npm i ts-node` --> faster, no download
+`ts-node src/index.ts`--> if installed globally
 
 in package.json
 

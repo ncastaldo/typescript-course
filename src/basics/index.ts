@@ -111,7 +111,7 @@ p2 = p3
 /**
  * Classes
  */
-class Animal {
+export class Animal {
 
     // private is a TS keyword
     private name: string;
@@ -157,7 +157,7 @@ let exampleAny: any
 let exampleUnknown: unknown = 234
 
 // the any type permits to bypass typescript
-exampleAny.allows.any.kind.of.chain()
+// --> exampleAny.allows.any.kind.of.chain()
 
 // unknown is a typed version of any, it requires checks
 if (typeof exampleUnknown === 'string') {
@@ -169,7 +169,7 @@ if (typeof exampleUnknown === 'string') {
  */
 let hello: any
 
-hello.trim() // not giving error
+// ---> hello.trim() // no error at compile time, but at runtime
 
 let hello2: unknown
 
@@ -214,7 +214,7 @@ const num = +that // type coercion, NO TYPE CASTING
 /**
  * Modules
  */
-function isPalindrome(str: string): boolean {
+export function isPalindrome(str: string): boolean {
     return str === str.split('').reverse().join()
 }
 
@@ -224,12 +224,11 @@ function isPalindrome(str: string): boolean {
 /**
  * Type Declarations
  */
-declare const process: any; // CANNOT be assigned
+declare const myProcess: any; // CANNOT be assigned
 
-console.log(
-    'Logged in user',
-    process.ENV.USER
-)
+// install @types/node 
+
+console.log('Logged in user:', process.env.USER)
 
 // declarations go into a file with extension '.d.ts'
 // e.g. env.d.ts
@@ -237,7 +236,12 @@ declare const declaration1: any;
 declare const declaration2: any;
 
 // npm i @types/node
-// automatically provides declaration modules
+// automatically provides declaration modules from node
+// for instance 'process' or 'fs', with documentation
+
+// the package express is not writte in ts
+// we can install the community maintained typed version
+// with 'npm i @types/express'
 
 /**
  * async/await
@@ -245,7 +249,8 @@ declare const declaration2: any;
 const delay: (ms: number) => Promise<void> = (ms) => new Promise(res => setTimeout(res, ms))
 
 const mainAdync = async () => {
-    await delay(1000)
+    await delay(1000);
+    console.log('1s');
 }
 
 /**
