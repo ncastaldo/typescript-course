@@ -181,3 +181,119 @@ class GitResetCommand extends Command {
 new GitResetCommand().execute()
 
 // new Command() is invalid -> it is abstract!
+
+
+/**
+ * Index signature
+ */
+
+ const strs = {
+    hello: 'hello'
+}
+
+console.log(strs['hello'])
+
+type PersonDictionary = {
+    [username: string]: Person
+}
+
+const persons: PersonDictionary = {
+    nicola: {name: 'Nicola', surname: 'C'}
+}
+
+const missing = persons['missing']
+
+console.log(missing.name) // does not highlight error! -> [username: string]: Person | undefined
+
+/**
+ * Readonly Arrays and Tuples
+ */
+
+// arrays
+function reverseSorted(input: readonly number[]): number[] {
+    return input.slice().sort().reverse() // 'readonly' forces the usage of 'slice'
+}
+
+const original = [1, 2, 3]
+const result = reverseSorted(original)
+
+type Neat = readonly number[] 
+type Long = ReadonlyArray<number>
+
+const immutable: Neat = [1, 2, 3]  
+// immutable[0] = 3 // NOT possible
+
+// tuples
+type PointTuple =  readonly [number, number]
+
+const pt : PointTuple = [0, 0]
+// pt[1] = 3 // illegal, readonly
+
+/**
+ * Double Assertion
+ */
+
+type A = { a: number }
+type AB = { a: number, b: number }
+type C = { c: number }
+
+let aOnly: A = { a: 0 }
+let ab: AB = { a: 1, b: 4 }
+let cOnly: C = { c: 3 }
+
+aOnly = ab
+// ab = aOnly // Error
+ab = aOnly as AB // telling TS to trust us, because a is in common
+
+// anything can be assigned unkonwn, unkown can be asserted to anything
+cOnly = aOnly as unknown as C 
+
+/**
+ * const Assertion
+ */
+const grohl = {
+    name: 'grohl',
+    role: 'singer'
+} as const // -> members are made readonly, arrays are made readonly tuples
+
+// grohl.name = 'hello' // this is illegal
+
+function layout(settings: {align: 'left' | 'right'}) {}
+
+const example =  {
+    align: 'left' as const // single property too
+}
+
+layout(example) // not giving error
+
+/**
+ * this parameter
+ */
+
+// enforce what is the parameter
+// it must be the first parameter (not translated in js)
+function double(this: { value: number }) {
+    this.value = this.value *2
+}
+
+const invalid = {
+    misspelledValue: 10,
+    double
+}
+
+// invalid.double() // gives error
+
+/**
+ * Generic Constraints
+ */
+type NameFields = {
+    firstName: string,
+    lastName: string
+}
+
+function addFullName<T extends NameFields>(obj: T): T & { fullName: string } { 
+    return {
+        ...obj,
+        fullName: `${obj.firstName} ${obj.lastName}`
+    }
+}
